@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#071d2b" />
+    <meta
+      name="description"
+      content="Ocean Explorers – Geheimnis der Tiefsee. Rechne, entdecke und folge den Spuren einer verschollenen Unterwasserstation."
+    />
+    <title>Ocean Explorers · Geheimnis der Tiefsee</title>
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="/webjars/bootstrap/5.3.8/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script type="module" src="/js/app.js"></script>
+  </head>
+  <body>
+    <svg
+      class="svg-library"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <symbol id="i-compass" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <path d="m16 8-2.5 5.5L8 16l2.5-5.5L16 8Z" />
+        </symbol>
+        <symbol id="i-cup" viewBox="0 0 24 24">
+          <path
+            d="M7 3h10v6a5 5 0 0 1-10 0V3Zm0 2H3v3a4 4 0 0 0 5 4m9-7h4v3a4 4 0 0 1-5 4m-4 2v5m-4 2h8"
+          />
+        </symbol>
+        <symbol id="i-waves" viewBox="0 0 24 24">
+          <path
+            d="M2 7c4-5 6 5 10 0s6 5 10 0M2 12c4-5 6 5 10 0s6 5 10 0M2 17c4-5 6 5 10 0s6 5 10 0"
+          />
+        </symbol>
+        <symbol id="i-sound" viewBox="0 0 24 24">
+          <path d="m11 5-6 4H2v6h3l6 4V5ZM16 9l5 6m0-6-5 6" />
+        </symbol>
+        <symbol id="i-music" viewBox="0 0 24 24">
+          <path d="M9 17V5l12-2v12M9 8l12-2" />
+          <ellipse cx="6" cy="18" rx="3" ry="2.5" />
+          <ellipse cx="18" cy="16" rx="3" ry="2.5" />
+        </symbol>
+        <symbol id="i-full" viewBox="0 0 24 24">
+          <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" />
+        </symbol>
+        <symbol id="i-flash" viewBox="0 0 24 24">
+          <path d="m13 2-9 12h7l-1 8 10-13h-8l1-7Z" />
+        </symbol>
+        <symbol id="i-turtle" viewBox="0 0 32 24">
+          <path
+            d="M7 17c0-11 17-11 17 0H7Zm-3 0h23M10 17v4m12-4v4m2-7 3-5 3 2v6h-5M11 9l5 8 5-8"
+          />
+        </symbol>
+        <symbol id="i-fish" viewBox="0 0 32 24">
+          <path d="M6 12C11 3 22 3 28 12c-6 9-17 9-22 0Zm0 0-5-5v10l5-5Z" />
+          <circle cx="23" cy="10" r="1" />
+        </symbol>
+        <symbol id="i-ray" viewBox="0 0 32 24">
+          <path
+            d="M16 5C10 4 7 10 2 9c4 8 8 10 14 7 6 3 10 1 14-7-5 1-8-5-14-4Zm0 11v7"
+          />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="page-shell">
+      <header
+        class="site-header d-flex align-items-center justify-content-between"
+      >
+        <a class="brand" href="/" aria-label="Ocean Explorers Startseite"
+          ><span class="brand-mark"
+            ><svg><use href="#i-compass" /></svg></span
+          ><span
+            >OCEAN <b>EXPLORERS</b><small>GEHEIMNIS DER TIEFSEE</small></span
+          ></a
+        >
+        <nav
+          class="d-flex align-items-center gap-2 gap-sm-4"
+          aria-label="Hauptnavigation"
+        >
+          <button class="nav-link help-trigger" type="button">
+            So geht’s <span aria-hidden="true">↗</span></button
+          ><button class="btn nav-score leaderboard-trigger" type="button">
+            <svg><use href="#i-cup" /></svg> Bestenliste
+          </button>
+        </nav>
+      </header>
+      <main>
+        <section class="intro">
+          <div>
+            <p class="eyebrow">
+              <span class="status-dot"></span> DEIN KOPF. DEIN OZEAN. DEIN
+              ABENTEUER.
+            </p>
+            <h1>Das nächste Geheimnis<br />liegt <em>tiefer.</em></h1>
+            <p class="intro-copy">
+              Drei Strömungen. Eine Lösung. Deine Expedition.
+            </p>
+          </div>
+          <div class="expedition-stamp">
+            <svg><use href="#i-compass" /></svg
+            ><span
+              >UNBEKANNTE GEWÄSSER<strong
+                >Große Entdeckungen beginnen mit Neugier.</strong
+              ></span
+            >
+          </div>
+        </section>
+        <div class="rally-layout">
+          <section class="play-column" aria-label="Unterwasserexpedition">
+            <div class="game-frame" id="game-frame">
+              <canvas
+                id="road"
+                role="img"
+                aria-label="Unterwasserwelt mit drei Strömungsbahnen. Die Tore von links nach rechts entsprechen den drei Antworttasten."
+              ></canvas>
+              <div class="game-vignette" aria-hidden="true"></div>
+              <div class="hud">
+                <div class="hud-stats">
+                  <div>
+                    <span>FORSCHUNGSPUNKTE</span
+                    ><strong id="hud-score">0</strong>
+                  </div>
+                  <i></i>
+                  <div>
+                    <span>STRECKE</span
+                    ><strong
+                      ><span id="hud-distance">0</span> <small>m</small></strong
+                    >
+                  </div>
+                  <i></i>
+                  <div class="hud-boost">
+                    <span>PUNKTEFAKTOR</span
+                    ><strong id="hud-boost">× 1,5</strong>
+                  </div>
+                </div>
+                <div class="hud-actions">
+                  <button
+                    class="icon-button"
+                    id="sound-toggle"
+                    aria-label="Spieleffekte einschalten"
+                    aria-pressed="false"
+                    title="Spieleffekte einschalten"
+                    type="button"
+                  >
+                    <svg><use href="#i-sound" /></svg></button
+                  ><button
+                    class="icon-button"
+                    id="music-game-toggle"
+                    aria-label="Hintergrundmusik einschalten"
+                    aria-pressed="false"
+                    title="Hintergrundmusik einschalten"
+                    type="button"
+                  >
+                    <svg><use href="#i-music" /></svg></button
+                  ><button
+                    class="icon-button"
+                    id="pause-toggle"
+                    aria-label="Expedition pausieren"
+                    title="Pause (P)"
+                    type="button"
+                    hidden
+                  >
+                    Ⅱ</button
+                  ><button
+                    class="icon-button"
+                    id="fullscreen-toggle"
+                    aria-label="Vollbild"
+                    title="Vollbild"
+                    type="button"
+                  >
+                    <svg><use href="#i-full" /></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="landscape-label">
+                <span class="status-dot"></span
+                ><span id="biome-name">DAS KORALLENRIFF</span
+                ><span class="landscape-weather" id="depth-label"
+                  >TIEFE · 24 m</span
+                >
+              </div>
+              <div class="start-screen" id="start-screen">
+                <span class="start-kicker"><span></span> EXPEDITION 001</span>
+                <h2>Eine verschollene Station.<br />Und du auf ihrer Spur.</h2>
+                <p>
+                  Tauche mit deinem Scooter ins Unbekannte.<br />Jede Lösung
+                  bringt dich dem Geheimnis näher.
+                </p>
+                <button class="btn btn-rally start-trigger" type="button">
+                  Expedition starten <span aria-hidden="true">→</span></button
+                ><span class="start-note"
+                  ><span class="status-dot"></span> Ohne Anmeldung · Bereit zum
+                  Entdecken</span
+                >
+              </div>
+              <div class="question-panel" id="question-panel" hidden>
+                <span class="question-count" id="question-count"
+                  >AUFGABE 1</span
+                >
+                <h2 id="question-prompt" aria-live="polite"></h2>
+                <div
+                  class="answer-lanes"
+                  id="answer-lanes"
+                  role="group"
+                  aria-label="Antwortbahn auswählen: links, Mitte, rechts"
+                ></div>
+                <div class="round-track"><span id="round-progress"></span></div>
+              </div>
+              <div
+                class="feedback"
+                id="feedback"
+                role="status"
+                aria-live="polite"
+              ></div>
+              <div class="turbo-flash" id="turbo-flash" hidden>
+                <span
+                  ><svg><use href="#i-flash" /></svg> STRÖMUNGSBOOST</span
+                >
+              </div>
+              <div class="pause-screen" id="pause-screen" hidden>
+                <span class="pause-symbol">Ⅱ</span>
+                <h2>Zeit zum Durchatmen.</h2>
+                <p>Dein nächstes Geheimnis wartet auf dich.</p>
+                <button id="resume-button" class="btn btn-rally" type="button">
+                  Weiterforschen →
+                </button>
+              </div>
+              <div class="safety-stop" id="safety-stop" role="status" hidden>
+                <svg><use href="#i-compass" /></svg
+                ><strong>Sicherheitssystem aktiviert</strong
+                ><span>Dein Scooter bringt dich sicher zurück.</span>
+              </div>
+              <div class="game-bottom">
+                <span class="stage-pill" id="stage-pill"
+                  ><span></span> ALLE SYSTEME BEREIT</span
+                ><span class="stage-tip" id="stage-tip"
+                  >Ein Signal. Irgendwo in der Tiefe.</span
+                >
+              </div>
+            </div>
+            <div class="driving-controls">
+              <div class="control-group steering">
+                <button
+                  class="key touch-steer"
+                  data-direction="-1"
+                  aria-label="Eine Bahn nach links"
+                  type="button"
+                >
+                  ←</button
+                ><button
+                  class="key touch-steer"
+                  data-direction="1"
+                  aria-label="Eine Bahn nach rechts"
+                  type="button"
+                >
+                  →</button
+                ><span>Bahn wechseln</span>
+              </div>
+              <div class="control-group boost-control">
+                <button
+                  class="key boost-key"
+                  id="turbo-button"
+                  aria-label="Strömungsboost zur Antwort"
+                  type="button"
+                >
+                  <svg><use href="#i-flash" /></svg><span>Strömungsboost</span
+                  ><kbd>↑</kbd>
+                </button>
+              </div>
+              <span class="keyboard-note"><kbd>P</kbd> Pause</span>
+            </div>
+            <div class="journey-card">
+              <div class="journey-title">
+                <svg><use href="#i-compass" /></svg
+                ><span>DEINE EXPEDITIONSROUTE</span
+                ><small>Folge dem Signal</small>
+              </div>
+              <div class="journey-stages">
+                <div class="journey-stage current" data-biome="0">
+                  <i>01</i
+                  ><span>Korallenriff<small>Der erste Hinweis</small></span>
+                </div>
+                <span class="route-line"></span>
+                <div class="journey-stage" data-biome="1">
+                  <i>02</i
+                  ><span
+                    >Unterwasser-Canyon<small>Spuren im Dunkeln</small></span
+                  >
+                </div>
+                <span class="route-line"></span>
+                <div class="journey-stage" data-biome="2">
+                  <i>03</i
+                  ><span
+                    >Leuchtende Tiefsee<small>Das Geheimnis wartet</small></span
+                  >
+                </div>
+              </div>
+            </div>
+          </section>
+          <aside class="setup-column">
+            <section class="settings-card">
+              <div class="card-heading">
+                <svg><use href="#i-waves" /></svg>
+                <h2>Dein Tauchgang</h2>
+                <span class="card-badge">BEREIT?</span>
+              </div>
+              <p class="settings-intro">Pack deinen Forschergeist ein.</p>
+              <fieldset id="settings-fields">
+                <legend class="field-label">Was möchtest du erforschen?</legend>
+                <div class="operation-grid">
+                  <label class="operation-option"
+                    ><input
+                      type="checkbox"
+                      name="operation"
+                      value="ADDITION"
+                    /><span class="operation-symbol">+</span
+                    ><span>Plus<small>Addieren</small></span
+                    ><span class="selection-check">✓</span></label
+                  >
+                  <label class="operation-option"
+                    ><input
+                      type="checkbox"
+                      name="operation"
+                      value="SUBTRACTION"
+                    /><span class="operation-symbol">−</span
+                    ><span>Minus<small>Subtrahieren</small></span
+                    ><span class="selection-check">✓</span></label
+                  >
+                  <label class="operation-option"
+                    ><input
+                      type="checkbox"
+                      name="operation"
+                      value="MULTIPLICATION"
+                      checked
+                    /><span class="operation-symbol">×</span
+                    ><span>Kleines 1×1<small>Malnehmen</small></span
+                    ><span class="selection-check">✓</span></label
+                  >
+                  <label class="operation-option"
+                    ><input
+                      type="checkbox"
+                      name="operation"
+                      value="DIVISION"
+                    /><span class="operation-symbol">÷</span
+                    ><span>Geteilt<small>1×1 rückwärts</small></span
+                    ><span class="selection-check">✓</span></label
+                  >
+                </div>
+                <p class="field-hint">Mehrere Rechenarten? Sehr gern.</p>
+                <div class="range-setting">
+                  <label class="field-label" for="number-range"
+                    >Zahlenraum <small>für Plus &amp; Minus</small></label
+                  ><select class="form-select" id="number-range">
+                    <option value="20">Bis 20</option>
+                    <option value="100" selected>Bis 100</option>
+                    <option value="1000">Bis 1.000</option>
+                  </select>
+                </div>
+                <span class="field-label speed-label" id="speed-label"
+                  >Deine Startgeschwindigkeit</span
+                >
+                <div
+                  class="speed-options"
+                  role="radiogroup"
+                  aria-labelledby="speed-label"
+                >
+                  <label
+                    ><input type="radio" name="speed" value="RELAXED" /><span
+                      ><svg><use href="#i-turtle" /></svg
+                      ><strong>Entspannt</strong><small>× 1 Punkte</small></span
+                    ></label
+                  ><label
+                    ><input
+                      type="radio"
+                      name="speed"
+                      value="NORMAL"
+                      checked
+                    /><span
+                      ><svg><use href="#i-fish" /></svg><strong>Normal</strong
+                      ><small>× 1,5 Punkte</small></span
+                    ></label
+                  ><label
+                    ><input type="radio" name="speed" value="FAST" /><span
+                      ><svg><use href="#i-ray" /></svg><strong>Schnell</strong
+                      ><small>× 2 Punkte</small></span
+                    ></label
+                  >
+                </div>
+              </fieldset>
+              <div class="form-check form-switch music-setting">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="music-toggle"
+                  aria-describedby="music-description"
+                /><label class="form-check-label" for="music-toggle"
+                  >Unterwasserklänge<small id="music-description"
+                    >Dein Soundtrack fürs Abenteuer.</small
+                  ></label
+                ><svg><use href="#i-music" /></svg>
+              </div>
+              <p class="settings-lock" id="settings-lock" hidden>
+                Deine Ausrüstung ist für diesen Tauchgang eingestellt.
+              </p>
+              <button
+                class="btn btn-rally w-100 start-trigger sidebar-start"
+                type="button"
+              >
+                Expedition starten <span aria-hidden="true">→</span>
+              </button>
+              <p class="settings-footnote">
+                <svg><use href="#i-compass" /></svg> Kleine Aufgaben. Große
+                Entdeckungen.
+              </p>
+            </section>
+            <section class="leaderboard-card">
+              <div class="card-heading">
+                <svg class="trophy-icon"><use href="#i-cup" /></svg>
+                <h2>Die Entdecker-Charts</h2>
+                <button
+                  class="text-button leaderboard-trigger"
+                  type="button"
+                  aria-label="Bestenliste öffnen"
+                >
+                  ↗
+                </button>
+              </div>
+              <div id="sidebar-scores" class="score-list">
+                <p class="empty-scores">
+                  Das Logbuch wartet auf deine Expedition.
+                </p>
+              </div>
+              <div class="leaderboard-footer">
+                <span>Jeder Tauchgang zählt.</span
+                ><button class="text-button leaderboard-trigger" type="button">
+                  Bestenliste →
+                </button>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </main>
+      <footer class="site-footer">
+        <span>Mit Neugier im Kopf und dem Ozean im Herzen.</span
+        ><span
+          ><span class="status-dot"></span> ENTDECKEN · RECHNEN · STAUNEN</span
+        >
+      </footer>
+    </div>
+    <dialog id="help-dialog" class="rally-dialog" aria-labelledby="help-title">
+      <button
+        class="dialog-close"
+        data-close
+        aria-label="Schließen"
+        type="button"
+      >
+        ×
+      </button>
+      <p class="eyebrow">DEIN EXPEDITIONSHANDBUCH</p>
+      <h2 id="help-title">Ein Ozean voller<br />Möglichkeiten.</h2>
+      <ol class="help-steps">
+        <li>
+          <span>1</span>
+          <div>
+            <strong>Stelle deinen Tauchgang zusammen.</strong>
+            <p>
+              Wähle eine oder mehrere Rechenarten, den Zahlenraum für Plus und
+              Minus und dein Starttempo.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span>2</span>
+          <div>
+            <strong>Drei Strömungen. Eine Lösung.</strong>
+            <p>
+              Löse die Aufgabe und lenke mit ← und → in das richtige
+              Forschungstor. Auf dem Handy nutzt du die großen Tasten oder
+              tippst direkt auf die Antwort: links, Mitte, rechts.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span>3</span>
+          <div>
+            <strong>Antwort gefunden? Strömungsboost!</strong>
+            <p>
+              Mit ↑ oder der Boost-Taste überspringst du die Anfahrt ohne
+              Punkteabzug. Ab Aufgabe 10 steigt das Tempo. P oder Escape
+              pausiert; beim Tabwechsel pausiert das Spiel automatisch.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span>4</span>
+          <div>
+            <strong>Schreibe deinen Namen ins Logbuch.</strong>
+            <p>
+              Bei einer falschen Antwort bremst dein Scooter sicher ab. Du
+              siehst die richtige Lösung und kannst deine Forschungspunkte in
+              der Bestenliste speichern.
+            </p>
+          </div>
+        </li>
+      </ol>
+      <button class="btn btn-rally w-100" data-close type="button">
+        Alles klar, abtauchen →
+      </button>
+    </dialog>
+    <dialog
+      id="leaderboard-dialog"
+      class="rally-dialog"
+      aria-labelledby="leaderboard-title"
+    >
+      <button
+        class="dialog-close"
+        data-close
+        aria-label="Schließen"
+        type="button"
+      >
+        ×
+      </button>
+      <p class="eyebrow">DAS LOGBUCH DER ENTDECKER</p>
+      <h2 id="leaderboard-title">Große Neugier.<br />Große Entdeckungen.</h2>
+      <p class="dialog-copy">
+        Die Top 3 und der Rang deiner zuletzt gespeicherten Expedition.
+      </p>
+      <div id="full-scores" class="score-list full-scores"></div>
+      <p class="score-explanation">
+        Alle Rechenarten und Tempostufen teilen sich eine Bestenliste. Höheres
+        Starttempo erhöht den Punktefaktor.
+      </p>
+    </dialog>
+    <dialog
+      id="result-dialog"
+      class="rally-dialog result-dialog"
+      aria-labelledby="result-title"
+    >
+      <p class="eyebrow" id="result-kicker">EXPEDITION ABGESCHLOSSEN</p>
+      <h2 id="result-title">Bereit für den<br />nächsten Tauchgang?</h2>
+      <p class="crash-answer" id="crash-answer"></p>
+      <div class="result-score">
+        <strong id="result-score">0</strong><span>FORSCHUNGSPUNKTE</span>
+      </div>
+      <div class="result-stats">
+        <span><strong id="result-distance">0 m</strong> Strecke</span
+        ><span><strong id="result-solved">0</strong> Aufgaben gelöst</span>
+      </div>
+      <form id="score-form">
+        <label class="field-label" for="player-name"
+          >Dein Name für die Bestenliste</label
+        >
+        <div class="name-row">
+          <input
+            class="form-control"
+            id="player-name"
+            name="name"
+            maxlength="24"
+            minlength="1"
+            autocomplete="nickname"
+            placeholder="Dein Forschername"
+            required
+          /><button class="btn btn-rally" id="save-score" type="submit">
+            Eintragen ↗
+          </button>
+        </div>
+        <p class="field-hint">
+          Dein Name wird auf diesem Gerät ein Jahr lang gemerkt.
+        </p>
+      </form>
+      <p
+        id="save-status"
+        class="save-status"
+        role="status"
+        aria-live="polite"
+      ></p>
+      <div id="result-scores" class="score-list" hidden></div>
+      <button class="btn btn-rally w-100" id="play-again" type="button">
+        Nächster Tauchgang ↻</button
+      ><button class="result-back text-button" id="back-to-setup" type="button">
+        Zurück zur Vorbereitung
+      </button>
+    </dialog>
+    <div class="toast-message" id="toast" role="alert" hidden></div>
+    <canvas
+      id="confetti"
+      class="confetti"
+      popover="manual"
+      aria-hidden="true"
+      hidden
+    ></canvas>
+  </body>
+</html>
